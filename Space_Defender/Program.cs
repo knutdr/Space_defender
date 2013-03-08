@@ -11,7 +11,7 @@ namespace Space_Defender
     /// </summary>
     public static class Program
     {
-        private static Game1 game;
+        private static SpaceDefender game;
 
         /// <summary>
         /// The main entry point for the application.
@@ -19,7 +19,7 @@ namespace Space_Defender
         [STAThread]
         static void Main()
         {
-            game = new Game1();
+            game = new SpaceDefender();
             game.Run();
         }
     }
