@@ -9,7 +9,7 @@ namespace Space_Defender.Library
     public abstract class GameBase : Game, IFpsHandler
     {
         public DisplaySetting DisplayMode { get; private set; }
-        public TextureRepository Textures { get; private set; }
+        public static TextureRepository Textures { get; private set; }
         protected GraphicsDeviceManager Graphics { get; private set; }
 
 

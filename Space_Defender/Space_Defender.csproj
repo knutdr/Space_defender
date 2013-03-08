@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Library\GameBase.cs" />
     <Compile Include="Library\DisplaySetting.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TextureRepository.cs" />
     <Compile Include="SpaceDefender.cs" />
@@ -64,6 +65,12 @@
   <ItemGroup>
     <Content Include="..\..\..\..\..\..\..\Program Files %28x86%29\MonoGame\v3.0\Assemblies\WindowsGL\SDL.dll">
       <Link>SDL.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bullet0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\spaceship.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\test.png">

@@ -23,17 +23,18 @@ namespace Space_Defender
     {
         public const double PreferrableFps = 60.0;
         public const double UpdateInterval = 1000.0/PreferrableFps;
-        private static readonly DisplaySetting displaySetting = new DisplaySetting(1280, 720, false);
+        public static readonly DisplaySetting DisplaySetting = new DisplaySetting(1280, 720, false);
 
         private Sprite testSprite;
-
+		private Player Player1;
         
         SpriteBatch spriteBatch;
-        private Texture2D testTexture;
+		
         Vector2 textureVector = new Vector2(0,0);
+		
 
         public SpaceDefender()
-            : base(displaySetting)
+            : base(DisplaySetting)
         {}
 
         /// <summary>
@@ -64,6 +65,9 @@ namespace Space_Defender
             testSprite.Vector = new Vector2(0.01f, 0f);
             testSprite.Position = new Vector2(0f,0f);
 
+			this.Player1 = new Player(Textures["spaceship"]);
+			
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -87,15 +91,19 @@ namespace Space_Defender
         {
             Fps.Update(gameTime.ElapsedGameTime.TotalMilliseconds);
 
-            testSprite.Update( (float)gameTime.ElapsedGameTime.TotalMilliseconds);
-            
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                    Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    Exit();
+			float gameTimer = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                // TODO: Add your update logic here
+            testSprite.Update( gameTimer);
+			
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
 
-                base.Update(gameTime);
+			Player1.Update(gameTimer);
+
+			// TODO: Add your update logic here
+
+			base.Update(gameTime);
         }
 
         /// <summary>
@@ -109,6 +117,7 @@ namespace Space_Defender
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             testSprite.Draw(spriteBatch);
+			Player1.Draw(spriteBatch);
             //spriteBatch.Draw(testTexture, new Vector2(0,0), new Rectangle(0, 0, 1500, 1500), Color.White,0f,textureVector,new Vector2(1,1),SpriteEffects.None, 1f);
             spriteBatch.End();
             base.Draw(gameTime);
