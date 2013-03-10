@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\WindowsGL\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\appl\VS2012 Div prosjekter\bin\WindowsGL\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -35,8 +35,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Alien.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Library\GameBase.cs" />
     <Compile Include="Library\DisplaySetting.cs" />
+    <Compile Include="Library\IInteractive.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TextureRepository.cs" />
     <Compile Include="SpaceDefender.cs" />
@@ -64,6 +67,9 @@
   <ItemGroup>
     <Content Include="..\..\..\..\..\..\..\Program Files %28x86%29\MonoGame\v3.0\Assemblies\WindowsGL\SDL.dll">
       <Link>SDL.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\alien.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\test.png">

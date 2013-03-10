@@ -23,17 +23,15 @@ namespace Space_Defender
     {
         public const double PreferrableFps = 60.0;
         public const double UpdateInterval = 1000.0/PreferrableFps;
-        private static readonly DisplaySetting displaySetting = new DisplaySetting(1280, 720, false);
+        public static readonly DisplaySetting DisplaySetting = new DisplaySetting(1280, 720, true);
 
         private Sprite testSprite;
 
-        
+        private Level level1;
         SpriteBatch spriteBatch;
-        private Texture2D testTexture;
-        Vector2 textureVector = new Vector2(0,0);
 
         public SpaceDefender()
-            : base(displaySetting)
+            : base(DisplaySetting)
         {}
 
         /// <summary>
@@ -64,6 +62,7 @@ namespace Space_Defender
             testSprite.Vector = new Vector2(0.01f, 0f);
             testSprite.Position = new Vector2(0f,0f);
 
+            level1 = new Level(10, Textures["alien"]);
             // TODO: use this.Content to load your game content here
         }
 
@@ -85,9 +84,9 @@ namespace Space_Defender
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            Fps.Update(gameTime.ElapsedGameTime.TotalMilliseconds);
-
-            testSprite.Update( (float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            var elapsedTime = (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+            //testSprite.Update(elapsedTime);
+            level1.Update(elapsedTime);
             
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                     Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -108,8 +107,10 @@ namespace Space_Defender
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            testSprite.Draw(spriteBatch);
-            //spriteBatch.Draw(testTexture, new Vector2(0,0), new Rectangle(0, 0, 1500, 1500), Color.White,0f,textureVector,new Vector2(1,1),SpriteEffects.None, 1f);
+            //testSprite.Draw(spriteBatch);
+            
+            spriteBatch.Draw(Textures["test"], new Vector2(0,0), new Rectangle(0, 0, 1500, 1500), Color.White,0f,new Vector2(0,0),new Vector2(DisplaySetting.Width / 1500f,DisplaySetting.Height / 1500f),SpriteEffects.None, 1f);
+            level1.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

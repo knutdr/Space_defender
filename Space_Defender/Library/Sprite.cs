@@ -9,9 +9,14 @@ namespace Space_Defender.Library
         public Vector2 Position;
         public Vector2 Vector;
 
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
         public Sprite(Texture2D texture)
         {
             Texture = texture;
+            Width = Texture.Width;
+            Height = Texture.Height;
         }
         public virtual void Update(float elapsedTime)
         {
