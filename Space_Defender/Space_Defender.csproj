@@ -40,6 +40,7 @@
     <Compile Include="Library\GameBase.cs" />
     <Compile Include="Library\DisplaySetting.cs" />
     <Compile Include="Library\IInteractive.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TextureRepository.cs" />
     <Compile Include="SpaceDefender.cs" />
@@ -70,6 +71,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\alien.png">
+    <Content Include="Content\bullet0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\spaceship.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\test.png">
