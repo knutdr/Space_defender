@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Space_Defender.Library;
+using Space_Defender.Library.Weapons;
 
 namespace Space_Defender
 {
@@ -13,18 +14,26 @@ namespace Space_Defender
         MoveLeft
     }
 
-    public class Alien : Sprite
+    public class Alien : Living
     {
         private float yPositionWhenStartedMovingDownwards;
         private AlienMovement currentMovementStatus;
         private AlienMovement previousMovementStatus;
-        public Alien(Texture2D texture) : base(texture)
+        
+        public Alien(Texture2D texture) : base(texture, new WeaponSet(new Laser(GameBase.Textures["Laser"])))
         {
             setVector();
         }
 
+        public override SpriteType SpriteType
+        {
+            get { return SpriteType.Alien; }
+        }
+
         public override void Update(float elapsedTime)
         {
+            base.Update(elapsedTime);
+
             if (currentMovementStatus == AlienMovement.MoveRight)
             {
                 if (Position.X + Width >= SpaceDefender.DisplaySetting.Width)
@@ -58,7 +67,7 @@ namespace Space_Defender
                 }
             }
 
-            base.Update(elapsedTime);
+            
         }
 
         private void setVector()

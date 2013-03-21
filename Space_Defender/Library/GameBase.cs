@@ -8,19 +8,19 @@ namespace Space_Defender.Library
 {
     public abstract class GameBase : Game, IFpsHandler
     {
-        public DisplaySetting DisplayMode { get; private set; }
+        public static DisplaySetting DisplaySetting { get; private set; }
         public static TextureRepository Textures { get; private set; }
         protected GraphicsDeviceManager Graphics { get; private set; }
-
+        public IInteractive CurrentScene { get; set; }
 
         protected GameBase(DisplaySetting displayMode)
         {
-            DisplayMode = displayMode;
+            DisplaySetting = displayMode;
             Graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferWidth = DisplayMode.Width,
-                PreferredBackBufferHeight = DisplayMode.Height,
-                IsFullScreen = DisplayMode.FullScreen
+                PreferredBackBufferWidth = DisplaySetting.Width,
+                PreferredBackBufferHeight = DisplaySetting.Height,
+                IsFullScreen = DisplaySetting.FullScreen
             };
         }
 

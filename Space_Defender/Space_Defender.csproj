@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\appl\VS2012 Div prosjekter\bin\WindowsGL\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\appl\VS2012 Div prosjekter\bin\WindowsGL\Debug2\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,9 +37,23 @@
   <ItemGroup>
     <Compile Include="Alien.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Library\Background.cs" />
     <Compile Include="Library\GameBase.cs" />
     <Compile Include="Library\DisplaySetting.cs" />
+    <Compile Include="Library\Health.cs" />
     <Compile Include="Library\IInteractive.cs" />
+    <Compile Include="Library\ISprite.cs" />
+    <Compile Include="Library\Living.cs" />
+    <Compile Include="Library\Particles\Particle.cs" />
+    <Compile Include="Library\Particles\ParticleEmitter.cs" />
+    <Compile Include="Library\Player.cs" />
+    <Compile Include="Library\ScoreContainer.cs" />
+    <Compile Include="Library\SpriteContainer.cs" />
+    <Compile Include="Library\SpriteType.cs" />
+    <Compile Include="Library\WeaponSet.cs" />
+    <Compile Include="Library\Weapons\Bullet.cs" />
+    <Compile Include="Library\Weapons\Laser.cs" />
+    <Compile Include="Library\Weapons\Weapon.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TextureRepository.cs" />
@@ -59,6 +73,7 @@
     <Reference Include="Lidgren.Network">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Lidgren.Network.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="Tao.Sdl">
       <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsGL\Tao.Sdl.dll</HintPath>
     </Reference>
@@ -71,7 +86,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\alien.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bullet0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\particle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\spaceship.png">
@@ -80,9 +103,19 @@
     <Content Include="Content\test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ufo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TextureMap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Fonts\" />
+    <Folder Include="Content\Menu\" />
+    <Folder Include="Library\Scenes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

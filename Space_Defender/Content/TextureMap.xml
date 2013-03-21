@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Textures>
+    <Texture key="Alien1" fileName="alien" />
+    <Texture key="Background1" fileName="background" />
+    <Texture key="Ufo" fileName="ufo" />
+    <Texture key="Particle1" fileName="particle" />
+    <Texture key="Player" fileName="spaceship" />
+    <Texture key="Laser" fileName="bullet0" />
+</Textures> 
