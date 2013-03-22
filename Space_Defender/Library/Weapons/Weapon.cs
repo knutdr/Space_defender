@@ -10,8 +10,8 @@ namespace Space_Defender.Library.Weapons
         public double Damage { get; set; }
         public float FireIntervalInMilliseconds { get; set; }
         public float MillisecondsElapsedSinceLastFire { get; protected set; }
-      
 
+        public ISprite Owner { get; set; }
         protected Weapon(Texture2D texture) : base(texture)
         {
             MillisecondsElapsedSinceLastFire = float.MaxValue;
@@ -49,7 +49,28 @@ namespace Space_Defender.Library.Weapons
         {
             get { return SpriteType.Weapon; }
         }
-        
-        public abstract void notifyHit(Bullet bullet, ISprite sprite);
+
+        public void CheckHit(Bullet bullet, ISprite sprite)
+        {
+            if (sprite.Equals(Owner))
+                return;
+
+            if (!(sprite is Living))
+                return;
+
+            var livingSprite = sprite as Living;
+            HandleHit(bullet, livingSprite);
+        }
+
+        public virtual void HandleHit(Bullet bullet, Living sprite)
+        {
+            sprite.ApplyDamage(Damage);
+            SpriteContainer.Remove(bullet);
+            if (!sprite.IsAlive())
+                SpriteContainer.Remove(sprite);
+            afterSuccessfulHit(bullet, sprite);
+        }
+
+        protected abstract void afterSuccessfulHit(Bullet bullet, Living sprite);
     }
 }

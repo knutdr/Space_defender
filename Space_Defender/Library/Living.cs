@@ -8,6 +8,7 @@ namespace Space_Defender.Library
         public Health Health { get; private set; }
         public WeaponSet WeaponSet { get; private set; }
         public Weapon Weapon { get { return WeaponSet.Weapon; } }
+        public double ScoreValue { get; set; }
 
         public Living(Texture2D texture, WeaponSet weaponSet, Health health) : this(texture, weaponSet)
         {

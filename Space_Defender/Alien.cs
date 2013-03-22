@@ -20,9 +20,10 @@ namespace Space_Defender
         private AlienMovement currentMovementStatus;
         private AlienMovement previousMovementStatus;
         
-        public Alien(Texture2D texture) : base(texture, new WeaponSet(new Laser(GameBase.Textures["Laser"])))
+        public Alien(Texture2D texture, double scoreValue) : base(texture, new WeaponSet(new Laser(GameBase.Textures["Laser"])))
         {
             setVector();
+            ScoreValue = scoreValue;
         }
 
         public override SpriteType SpriteType

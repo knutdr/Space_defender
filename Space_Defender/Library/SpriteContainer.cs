@@ -8,7 +8,7 @@ namespace Space_Defender.Library
     public static class SpriteContainer
     {
         private static readonly Dictionary<SpriteType, List<ISprite>> _sprites = new Dictionary<SpriteType, List<ISprite>>();
-        
+        private static readonly SpriteType[] spriteTypes = (SpriteType[]) Enum.GetValues(typeof (SpriteType));
         static SpriteContainer ()
         {
             initialize();
@@ -26,23 +26,45 @@ namespace Space_Defender.Library
 
         private static void initialize()
         {
-            var spriteTypes = (SpriteType[]) Enum.GetValues(typeof (SpriteType));
             foreach (var spriteType in spriteTypes)
                 _sprites[spriteType] = new List<ISprite>();
         }
 
-        public static void Draw(SpriteType spriteType, SpriteBatch spriteBatch)
+        public static void Draw(SpriteType bitmaskedSpriteType, SpriteBatch spriteBatch)
         {
-            var count = _sprites[spriteType].Count;
-            for(int i = 0; i < count; i++)
-                _sprites[spriteType][i].Draw(spriteBatch);
+            var relevantSpriteTypes = findSpriteTypesFromBitmask(bitmaskedSpriteType);
+            for (int i = 0; i < relevantSpriteTypes.Count; i++)
+            {
+                var spriteType = relevantSpriteTypes[i];
+                var count = _sprites[spriteType].Count;
+                for (int j = 0; j < count; j++)
+                    _sprites[spriteType][j].Draw(spriteBatch);    
+            }
+            
         }
 
-        public static void Update(SpriteType spriteType, float elapsedTime)
+        public static void Update(SpriteType bitmaskedSpriteType, float elapsedTime)
         {
-            var count = _sprites[spriteType].Count;
-            for(int i = count - 1; i >= 0; i--)
-                _sprites[spriteType][i].Update(elapsedTime);
+            var relevantSpriteTypes = findSpriteTypesFromBitmask(bitmaskedSpriteType);
+            for (int i = 0; i < relevantSpriteTypes.Count; i++)
+            {
+                var spriteType = relevantSpriteTypes[i];
+                var count = _sprites[spriteType].Count;
+                for (int j = count - 1; j >= 0; j--)
+                    _sprites[spriteType][j].Update(elapsedTime);
+            }
+        }
+
+        private static List<SpriteType> findSpriteTypesFromBitmask(SpriteType bitmaskedSpriteType)
+        {
+            var resultList = new List<SpriteType>();
+            for (int i = 0; i < spriteTypes.Length; i++)
+            {
+                var spriteType = spriteTypes[i];
+                if ((bitmaskedSpriteType & spriteType) == spriteType)
+                    resultList.Add(spriteType);
+            }
+            return resultList;
         }
 
         public static void CheckCollisionsBetween(SpriteType spriteType, SpriteType otherSpriteType)

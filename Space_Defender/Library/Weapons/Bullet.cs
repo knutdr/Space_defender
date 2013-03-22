@@ -28,7 +28,7 @@ namespace Space_Defender.Library.Weapons
 
         public override void handleCollisionWith(ISprite otherSprite)
         {
-            Weapon.notifyHit(this, otherSprite);
+            Weapon.CheckHit(this, otherSprite);
         }
     }
 }

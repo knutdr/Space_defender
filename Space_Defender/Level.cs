@@ -6,7 +6,7 @@ using Space_Defender.Library;
 
 namespace Space_Defender
 {
-    public class Level : IInteractive
+    public class Level : Scene
     {
         public string Name { get; private set; }
 
@@ -24,28 +24,25 @@ namespace Space_Defender
         {
             var xinterval = GameBase.DisplaySetting.Width / numberOfAliens;
             for (int i = 0; i < numberOfAliens; i++)
-                SpriteContainer.Add(new Alien(alienTexture) { Position = new Vector2(i * xinterval, 40) });
+                SpriteContainer.Add(new Alien(alienTexture, 10) { Position = new Vector2(i * xinterval, 40) });
         }
 
-        public void Update(float elapsedTime)
+        public override void Update(float elapsedTime)
         {
-            SpriteContainer.Update(SpriteType.Player, elapsedTime);
-            SpriteContainer.Update(SpriteType.Alien, elapsedTime);
-            SpriteContainer.Update(SpriteType.Weapon, elapsedTime);
-            SpriteContainer.Update(SpriteType.Bullet, elapsedTime);
-
+            SpriteContainer.Update(SpriteType.Player | SpriteType.Alien | SpriteType.Weapon | SpriteType.Bullet, elapsedTime);
             SpriteContainer.CheckCollisionsBetween(SpriteType.Bullet, SpriteType.Alien);
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
-            SpriteContainer.Draw(SpriteType.Background, spriteBatch);
-            SpriteContainer.Draw(SpriteType.Player, spriteBatch);
-            SpriteContainer.Draw(SpriteType.Alien, spriteBatch);
-            SpriteContainer.Draw(SpriteType.Bullet, spriteBatch);
+            SpriteContainer.Draw(SpriteType.Background | SpriteType.Player | SpriteType.Alien | SpriteType.Bullet, spriteBatch);
+            //SpriteContainer.Draw(SpriteType.Background, spriteBatch);
+            //SpriteContainer.Draw(SpriteType.Player, spriteBatch);
+            //SpriteContainer.Draw(SpriteType.Alien, spriteBatch);
+            //SpriteContainer.Draw(SpriteType.Bullet, spriteBatch);
 
             spriteBatch.End();
         }

@@ -15,6 +15,5 @@ namespace Space_Defender.Library
         void handleCollisionWith(ISprite otherSprite);
         Rectangle GetBoundingBox();
         SpriteType SpriteType { get; }
-
     }
 }

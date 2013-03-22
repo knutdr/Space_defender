@@ -47,6 +47,7 @@
     <Compile Include="Library\Particles\Particle.cs" />
     <Compile Include="Library\Particles\ParticleEmitter.cs" />
     <Compile Include="Library\Player.cs" />
+    <Compile Include="Library\Scene.cs" />
     <Compile Include="Library\ScoreContainer.cs" />
     <Compile Include="Library\SpriteContainer.cs" />
     <Compile Include="Library\SpriteType.cs" />

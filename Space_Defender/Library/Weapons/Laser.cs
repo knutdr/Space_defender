@@ -20,17 +20,8 @@ namespace Space_Defender.Library.Weapons
             return new LaserBullet(this, initialBulletPosition, bulletVector);
         }
 
-        public override void notifyHit(Bullet bullet, ISprite sprite)
-        {
-            if (!(sprite is Living))
-                return;
-
-            var livingSprite = sprite as Living;
-            livingSprite.ApplyDamage(Damage);
-            SpriteContainer.Remove(bullet);
-            if (!livingSprite.IsAlive())
-                SpriteContainer.Remove(sprite);
-        }
+        protected override void afterSuccessfulHit(Bullet bullet, Living sprite)
+        {}
     }
 
     public class LaserBullet : Bullet

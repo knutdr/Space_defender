@@ -10,6 +10,7 @@ namespace Space_Defender.Library
         private readonly List<Weapon> weapons = new List<Weapon>();
         public Weapon Weapon { get { return weapons[currentWeaponIndex]; } }
         private int currentWeaponIndex;
+        public ISprite Owner { get; set; }
 
         public WeaponSet(Weapon defaultWeapon)
         {
@@ -28,7 +29,10 @@ namespace Space_Defender.Library
                 return;
 
             if (Weapon == weapon)
+            {
                 currentWeaponIndex = 0;
+                updateWeaponOwner();
+            }
             weapons.Remove(weapon);
             SpriteContainer.Remove(weapon);
         }
@@ -38,6 +42,7 @@ namespace Space_Defender.Library
             currentWeaponIndex++;
             if (currentWeaponIndex >= weapons.Count - 1)
                 currentWeaponIndex = 0;
+            updateWeaponOwner();
         }
 
         public void ChoosePreviousWeapon()
@@ -45,6 +50,12 @@ namespace Space_Defender.Library
             if (currentWeaponIndex == 0)
                 currentWeaponIndex = weapons.Count - 1;
             else currentWeaponIndex--;
+            updateWeaponOwner();
+        }
+
+        private void updateWeaponOwner()
+        {
+            Weapon.Owner = Owner;
         }
     }
 }
